@@ -1,0 +1,39 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Validar certificado</title>
+	<link rel="stylesheet" href="{% static "css/bootstrap.min.css" %}">
+	<link rel="stylesheet" href="{% static "css/styles.css" %}">
+</head>
+<body>
+	<div class="main">
+		<div class="container certificate">	
+			<div class="col-md-12">
+				<div class="row">
+					<div class="col-md-12 col-sm-12">
+						<p>
+							Central de validação de certificados ForumRD
+							<br>
+							Digite o código de verificação do certificado para verificar autenticidade.
+						</p>
+						<h2>
+							Digite o código do certificado
+						</h2>
+						<div class="col-md-6 col-md-offset-3">
+							<form action="#" class="form-group">
+								<div class="form-group">
+									<input type="text" id="certificate" class="form-control" placeholder="Código do Certificado" required="required">
+								</div>
+								<button class="btn btn-success">Validar</button>	
+							</form>
+						</div>
+					</div>
+				</div>
+
+	        </div>        
+		</div>
+	</div>
+	<script src="{% static "js/bootstrap.min.js" %}"></script>
+</body>
+</html>
