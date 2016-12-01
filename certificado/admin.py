@@ -1,3 +1,9 @@
 from django.contrib import admin
 
-# Register your models here.
+from certificado.models import Evento, Participante, Curso, Certificado
+
+
+admin.site.register(Evento)
+admin.site.register(Participante)
+admin.site.register(Curso)
+admin.site.register(Certificado)

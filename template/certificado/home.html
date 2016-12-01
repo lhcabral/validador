@@ -1,4 +1,6 @@
 {% load static %}
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,7 +15,7 @@
 				<div class="row">
 					<div class="col-md-12 col-sm-12">
 						<p>
-							Central de validação de certificados ForumRD
+							Central de validação de certificados {{site}}
 							<br>
 							Digite o código de verificação do certificado para verificar autenticidade.
 						</p>
@@ -28,6 +30,7 @@
 								<button class="btn btn-success">Validar</button>	
 							</form>
 						</div>
+						<a href="{% static "download/Trabalho_1Autor.pdf" %}">Certificado</a>
 					</div>
 				</div>
 
