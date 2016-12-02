@@ -1,0 +1,31 @@
+{% extends "certificado/layout.html" %}
+
+{% block content %}
+
+	{% if request.user.is_authenticated %}
+
+		<p>
+			Entre com usuário e senha para fazer login
+		</p>
+	{% else %}
+		<div class="col-md-6 col-md-offset-3">
+			<form action="/certificado/auth" method="POST" class="form-group">
+				{% if error == True %}
+					<p class="alert alert-danger">Sair</p>
+				{% endif %}
+
+				{% csrf_token %}
+				<div class="form-group">
+					<label for="exemplo ">Usuário: </label>
+					<input type="text" id="username" class="form-control" placeholder="Usuário" required="required">
+				</div>
+				<div class="form-group">
+					<label for="exemplo ">Senha: </label>
+					<input type="password" id="password" class="form-control" placeholder="Senha" required="required">
+				</div>
+				<input class="btn btn-success" value=Entrar>	
+			</form>
+		</div>
+	{% endif %}
+
+{% endblock %}
