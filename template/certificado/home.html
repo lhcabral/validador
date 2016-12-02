@@ -9,9 +9,22 @@
 	<link rel="stylesheet" href="{% static "css/styles.css" %}">
 </head>
 <body>
+	<div class="header">
+		<div class="container">
+			<div class="row">
+				<div class="page-header">
+					{% if request.user.is_authenticated %}
+					<p>Username: {{request.user}} / {{request.user.email}}</p>
+					{% else %}
+					<p>Desconected!</p>
+					{% endif %}
+				</div>
+			</div>
+		</div>
+	</div>
 	<div class="main">
 		<div class="container certificate">	
-			<div class="col-md-12">
+
 				<div class="row">
 					<div class="col-md-12 col-sm-12">
 						<p>
@@ -30,11 +43,11 @@
 								<button class="btn btn-success">Validar</button>	
 							</form>
 						</div>
-						<a href="{% static "download/Trabalho_1Autor.pdf" %}">Certificado</a>
+						<!--a href="{% static "download/Trabalho_1Autor.pdf" %}">Certificado</a-->
 					</div>
 				</div>
 
-	        </div>        
+       
 		</div>
 	</div>
 	<script src="{% static "js/bootstrap.min.js" %}"></script>

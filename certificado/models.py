@@ -2,12 +2,16 @@ from __future__ import unicode_literals
 from django.contrib.auth.models import User
 from django.db import models
 
+class UserProfile(models.Model):
+	user = models.OneToOneField(User, unique=True)
+	cpf = models.CharField(max_length=50, null=True, blank=True)
+
 class Evento(models.Model):
-	name = models.CharField(max_length=255)
+	nome = models.CharField(max_length=255)
 	descricao = models.CharField(max_length=500, null=True)
 
 	def __str__(self):
-		return self.name
+		return self.nome
 
 class Participante(models.Model):
 	# user = models.OneToOneField(User, unique=True)
@@ -20,11 +24,11 @@ class Participante(models.Model):
 
 class Curso(models.Model):
 	evento = models.ForeignKey(Evento)
-	name = models.CharField(max_length=255)
+	nome = models.CharField(max_length=255)
 	carga_horaria = models.CharField(max_length=30)
 
 	def __str__(self):
-		return self.name
+		return self.nome
 
 class Certificado(models.Model):
 	participante = models.ForeignKey(Participante)
@@ -35,5 +39,4 @@ class Certificado(models.Model):
 
 	def __str__(self):
 		return self.descricao
-
 
