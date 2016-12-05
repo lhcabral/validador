@@ -1,7 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from certificado.models import Certificado, Evento, Participante, User
 from django.contrib.auth import authenticate, login
+from django.contrib.auth.decorators import login_required
 
 def home(request):
 	site = "ForumRD"
@@ -27,22 +28,46 @@ def home(request):
 
 	return render(request,'certificado/home.html', context)
 
-def auth(request):
-	error = False
+# def auth(request):
+# 	error = False
 	
-	if request.method == 'POST':
-		username = request.POST.get('username')
-		password = request.POST.get('password')
+# 	if request.method == 'POST':
+# 		username = request.POST.get("username")
+# 		password = request.POST.get('password')
+# 		user = authenticate(username=username, password=password)
+		
+# 		if user == None:
+# 			error = True
+# 		else:
+# 			error = False
+# 			login(request, user)
 
-		user = authenticate(username=username,password=password)
-		if user == None:
-			error = True
-		else:
-			error = False
-			login(request, user)
+# 		context = {
+# 			'error' : error
+# 		}
+# 	return render(request,'account/auth.html', context)
 
-	context = {
-		'error' : error
-	}
+def auth(request):
+    error = False
 
-	return render(request,'certificado/auth.html', context)
+    if request.method == 'POST':
+        # username = 
+        username = 'luiz'
+        password = '123456ba'
+        # password = request.POST.get('password')
+
+        user = authenticate(username='username', password=password)
+        if user is not None:
+        	login(request, user)
+        	return redirect('certificado.home')
+        else:
+            error = True
+            
+
+
+    context = {
+    	'error':error,
+    }
+    return render(request, 'account/auth.html', context)
+
+
