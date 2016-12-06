@@ -4,59 +4,59 @@ from certificado.models import Certificado, Evento, Participante, User
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 
+
 def home(request):
 	site = "ForumRD"
-	certificados = Certificado.objects.all()
-
-
-# adiciona dados na tabela com varios campos
-	# participante = Participante()
-	# participante.num_inscricao = "123456"
-	# participante.cpf = "030.263.234-46"
-	# participante.save()
-
-
-
+	certificado = Certificado.objects.all()
 	context = {
 		'site': site,
-		'certificados': certificados
+		'certificado': certificado
 	}
-
-
-	#Este comando adiciona dados direto na tabela do banco. Basta rodar a página
-	# Evento.objects.create(name="ForumRD")
 
 	return render(request,'certificado/home.html', context)
 
-# def auth(request):
-# 	error = False
+def resultado(request):
+	site = "ForumRD"
 	
-# 	if request.method == 'POST':
-# 		username = request.POST.get("username")
-# 		password = request.POST.get('password')
-# 		user = authenticate(username=username, password=password)
-		
-# 		if user == None:
-# 			error = True
-# 		else:
-# 			error = False
-# 			login(request, user)
+	numero = request.GET.get('numero')
+	certificado_all = Certificado.objects.all()
+	certificado = Certificado.objects.filter(numero=numero)
 
-# 		context = {
-# 			'error' : error
-# 		}
-# 	return render(request,'account/auth.html', context)
+	if certificado == None:
+		error = True
+		context = {
+			'site': site,
+			'error': error,
+			'certificado': certificado,
+		}
+		return render(request,'certificado/home.html', context)
+	error = False
+	context = {
+		'site': site,
+		'certificado': certificado,
+		'numero': numero,
+		'error': error,
+	}
+	return render(request,'certificado/resultado.html', context)
+
+
+	# context = {
+	# 	'site': site,
+	# 	'certificado': certificado,
+	# }
+
+	# return render(request,'certificado/home.html',context)
 
 def auth(request):
     error = False
 
     if request.method == 'POST':
-        # username = 
-        username = 'luiz'
-        password = '123456ba'
-        # password = request.POST.get('password')
+        # username = 'luiz'
+        username = request.POST.get("username")
+        # password = '123456ba'
+        password = request.POST.get("password")
 
-        user = authenticate(username='username', password=password)
+        user = authenticate(username=username, password=password)
         if user is not None:
         	login(request, user)
         	return redirect('certificado.home')

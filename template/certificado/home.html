@@ -7,16 +7,23 @@
 	Digite o código de verificação do certificado para verificar autenticidade.
 </p>
 <h2>
+	{% if error == True %}
+		<p class="alert alert-danger">Certificado inválido! {{certificado}}</p>
+	{% elif error == False %}
+
+		<p class="alert alert-danger">Certificado Válido!{{certificado}}</p>
+	{% endif %}
 	Digite o código do certificado
+
 </h2>
-<p>{{username}} {{password}}</p>
 <div class="col-md-6 col-md-offset-3">
-	<form action="#" class="form-group">
+	<form action="{% url "certificado.resultado" %}" method="GET" class="form-group">
 		<div class="form-group">
-			<input type="text" id="certificate" class="form-control" placeholder="Código do Certificado" required="required">
+			<input type="text" id="certificate" name="numero" class="form-control" placeholder="Código do Certificado" required="required">
 		</div>
 		<button class="btn btn-success">Validar</button>	
 	</form>
 </div>
+
 {% endblock %}
 						

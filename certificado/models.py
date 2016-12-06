@@ -31,6 +31,7 @@ class Curso(models.Model):
 		return self.nome
 
 class Certificado(models.Model):
+	numero = models.CharField(max_length=30)
 	participante = models.ForeignKey(Participante)
 	curso = models.ForeignKey(Curso)
 	evento = models.ForeignKey(Evento)
@@ -38,5 +39,5 @@ class Certificado(models.Model):
 	link_certificado = models.CharField(max_length=500)
 
 	def __str__(self):
-		return self.descricao
+		return self.numero
 
