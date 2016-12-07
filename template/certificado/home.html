@@ -6,24 +6,45 @@
 	<br>
 	Digite o código de verificação do certificado para verificar autenticidade.
 </p>
-<h2>
-	{% if error == True %}
-		<p class="alert alert-danger">Certificado inválido! {{certificado}}</p>
-	{% elif error == False %}
 
-		<p class="alert alert-danger">Certificado Válido!{{certificado}}</p>
-	{% endif %}
-	Digite o código do certificado
+<h2>Digite o código do certificado</h2>
 
-</h2>
 <div class="col-md-6 col-md-offset-3">
+
 	<form action="{% url "certificado.resultado" %}" method="GET" class="form-group">
 		<div class="form-group">
 			<input type="text" id="certificate" name="numero" class="form-control" placeholder="Código do Certificado" required="required">
 		</div>
 		<button class="btn btn-success">Validar</button>	
 	</form>
+
 </div>
+<div class="col-md-12">
+		
+	{% if valido %}
+		<h2><p class="alert alert-success">Certificado válido!</p></h2>
+
+		<div class="panel panel-success">
+		{% for cert in certificado %}
+	  		<div class="panel-heading">Evento: {{cert.evento}}</div>
+
+	  		<ul class="list-group">
+			    <li class="list-group-item">Participante: {{cert.participante}}</li>
+			    <li class="list-group-item">Curso: {{cert.curso}}</li>
+			    <li class="list-group-item">Carga Horária: {{cert.curso.carga_horaria}}</li>
+			    <li class="list-group-item">Descrição: {{cert.descricao}}</li>		    
+	  		</ul>
+		{% endfor %}
+		</div>
+
+	{% elif valido == False %}
+		<h2><p class="alert alert-danger">Certificado inválido! {{certificado}}</p></h2>
+	{% endif %}
+
+	</h2>
+</div>
+
+
 
 {% endblock %}
 						

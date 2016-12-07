@@ -1,51 +1,38 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from certificado.models import Certificado, Evento, Participante, User
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+
+from certificado.models import Certificado, Evento, Participante, User
+from certificado.forms import ParticipanteForm
 
 
 def home(request):
 	site = "ForumRD"
-	certificado = Certificado.objects.all()
 	context = {
 		'site': site,
-		'certificado': certificado
 	}
 
 	return render(request,'certificado/home.html', context)
 
 def resultado(request):
 	site = "ForumRD"
-	
-	numero = request.GET.get('numero')
-	certificado_all = Certificado.objects.all()
-	certificado = Certificado.objects.filter(numero=numero)
 
-	if certificado == None:
-		error = True
-		context = {
-			'site': site,
-			'error': error,
-			'certificado': certificado,
-		}
-		return render(request,'certificado/home.html', context)
-	error = False
+	numero = request.GET.get('numero')
+	certificado = Certificado.objects.filter(numero=numero)
+	valido = True
+
+	if not certificado:
+		valido = False
+
 	context = {
 		'site': site,
+		'valido': valido,
 		'certificado': certificado,
-		'numero': numero,
-		'error': error,
 	}
-	return render(request,'certificado/resultado.html', context)
 
+	return render(request,'certificado/home.html', context)
 
-	# context = {
-	# 	'site': site,
-	# 	'certificado': certificado,
-	# }
-
-	# return render(request,'certificado/home.html',context)
 
 def auth(request):
     error = False
@@ -69,5 +56,14 @@ def auth(request):
     	'error':error,
     }
     return render(request, 'account/auth.html', context)
+
+def logout_view(request):
+	logout(request)
+	return redirect('certificado.home')
+
+def participante_create(request):
+	form = ParticipanteForm()
+
+	return render(request, 'certificado/participante_create.html', {'form': form})
 
 

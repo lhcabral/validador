@@ -38,6 +38,5 @@ class Certificado(models.Model):
 	descricao = models.CharField(max_length=50)
 	link_certificado = models.CharField(max_length=500)
 
-	def __str__(self):
-		return self.numero
+
 

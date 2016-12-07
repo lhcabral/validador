@@ -14,9 +14,21 @@
 			<div class="row">
 				<div class="page-header">
 					{% if request.user.is_authenticated %}
-					<p>Username: {{request.user}} / {{request.user.email}}</p>
+						<ul class="nav nav-pills">
+						 	<li role="presentation" class="active"><a href="#">Home</a></li>
+							<li role="presentation"><a href="#">Participante</a></li>
+							<li role="presentation"><a href="#">Evento</a></li>
+							<li role="presentation"><a href="#">Curso</a></li>
+							<li role="presentation"><a href="#">Certificado</a></li>
+							<p>
+							Usuário: {{request.user}}
+							<a href="{% url "account.logout" %}"><br><small>Sair</small></a>
+							</p>
+						</ul>
+	
 					{% else %}
-					<p>Desconected!</p>
+					<p>Desconectado!</p>
+
 					{% endif %}
 				</div>
 			</div>
