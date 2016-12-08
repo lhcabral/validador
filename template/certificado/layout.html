@@ -27,8 +27,7 @@
 						</ul>
 	
 					{% else %}
-					<p>Desconectado!</p>
-
+					<p><a href="{% url "account.auth" %}"><br><small>Entrar</small></a></p>
 					{% endif %}
 				</div>
 			</div>
@@ -48,5 +47,6 @@
 		</div>
 	</div>
 	<script src="{% static "js/bootstrap.min.js" %}"></script>
+	<script src="{% static "js/jquery-3.1.1.min.js" %}"></script>
 </body>
 </html>

@@ -1,31 +1,53 @@
-{% extends "certificado/layout.html" %}
+{% load static %}
 
-{% block content %}
 
-	{% if request.user.is_authenticated %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Validar certificado</title>
+	<link rel="stylesheet" href="{% static "css/bootstrap.min.css" %}">
+	<link rel="stylesheet" href="{% static "css/styles.css" %}">
+</head>
+<body>
 
-		<p>
-			Entre com usuário e senha para fazer login
-		</p>
-	{% else %}
-		<div class="col-md-6 col-md-offset-3">
-			
-			<form action="{% url "account.auth" %}" method="POST" class="form-group">
-				{% csrf_token %}
-				{% if error == True %}
-					<p class="alert alert-danger">Sair</p>
-				{% endif %}
-				<div class="form-group">
-					<label for="exemplo ">Usuário: </label>
-					<input type="text" id="username" name="username" class="form-control" placeholder="Usuário" required="required">
+	<div class="main">
+		<div class="container certificate">	
+
+				<div class="row">
+					<div class="col-md-12 col-sm-12">
+
+						{% if request.user.is_authenticated %}
+
+							<p>
+								Entre com usuário e senha para fazer login
+							</p>
+						{% else %}
+							<div class="col-md-6 col-md-offset-3">
+								
+								<form action="{% url "account.auth" %}" method="POST" class="form-group">
+									{% csrf_token %}
+									{% if error == True %}
+										<p class="alert alert-danger">Sair</p>
+									{% endif %}
+									<div class="form-group">
+										<label for="exemplo ">Usuário: </label>
+										<input type="text" id="username" name="username" class="form-control" placeholder="Usuário" required="required">
+									</div>
+									<div class="form-group">
+										<label for="exemplo ">Senha: </label>
+										<input type="password" id="password" name="password" class="form-control" placeholder="Senha" required="required">
+									</div>
+									<input type="submit" class="btn btn-success" value=Entrar>	
+								</form>
+							</div>
+						{% endif %}
+
+					</div>
 				</div>
-				<div class="form-group">
-					<label for="exemplo ">Senha: </label>
-					<input type="password" id="password" name="password" class="form-control" placeholder="Senha" required="required">
-				</div>
-				<input type="submit" class="btn btn-success" value=Entrar>	
-			</form>
+
+       
 		</div>
-	{% endif %}
-
-{% endblock %}
+	</div>
+	<script src="{% static "js/bootstrap.min.js" %}"></script>
+</body>
+</html>

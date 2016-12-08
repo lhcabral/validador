@@ -15,6 +15,15 @@ def home(request):
 
 	return render(request,'certificado/home.html', context)
 
+def home_admin(request):
+	site = "ForumRD"
+	context = {
+		'site': site,
+	}
+
+	return render(request,'certificado/home_admin.html', context)
+
+
 def resultado(request):
 	site = "ForumRD"
 
@@ -46,7 +55,7 @@ def auth(request):
         user = authenticate(username=username, password=password)
         if user is not None:
         	login(request, user)
-        	return redirect('certificado.home')
+        	return redirect('certificado.home_admin')
         else:
             error = True
             
@@ -60,6 +69,13 @@ def auth(request):
 def logout_view(request):
 	logout(request)
 	return redirect('certificado.home')
+
+def participante_list(request):
+	list = Participante.objects.all()
+	context = {
+		'list': list,
+	}
+	return render(request, 'certificado/participante_list.html', context)
 
 def participante_create(request):
 	form = ParticipanteForm()

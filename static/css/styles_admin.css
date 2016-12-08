@@ -1,0 +1,17 @@
+body{
+	font-family: 'Source Sans Pro',sans-serif;
+}
+
+/*Destinado ao Navbar*/
+li small{
+	color: blue;
+}
+
+/*Destinado ao conteúdo do site*/
+.certificate_admin h2{
+	font-size: 2em;
+	font-weight: 600;
+	text-align: center;
+	color: #a4a4a4;
+	margin:10px 0;
+}
