@@ -15,6 +15,7 @@ def home(request):
 
 	return render(request,'certificado/home.html', context)
 
+@login_required
 def home_admin(request):
 	site = "ForumRD"
 	context = {
@@ -25,7 +26,6 @@ def home_admin(request):
 
 
 def resultado(request):
-	site = "ForumRD"
 
 	numero = request.GET.get('numero')
 	certificado = Certificado.objects.filter(numero=numero)
@@ -35,7 +35,6 @@ def resultado(request):
 		valido = False
 
 	context = {
-		'site': site,
 		'valido': valido,
 		'certificado': certificado,
 	}
@@ -64,12 +63,15 @@ def auth(request):
     context = {
     	'error':error,
     }
-    return render(request, 'account/auth.html', context)
+    return render(request, 'accounts/auth.html', context)
 
+@login_required
 def logout_view(request):
 	logout(request)
 	return redirect('certificado.home')
 
+# Início do CRUD / Participante
+@login_required
 def participante_list(request):
 	list = Participante.objects.all()
 	context = {
@@ -77,9 +79,27 @@ def participante_list(request):
 	}
 	return render(request, 'certificado/participante_list.html', context)
 
+@login_required
 def participante_create(request):
+	if request.method == 'POST':
+		form = ParticipanteForm(request.POST)
+		if form.is_valid():
+			participante = Participante()
+			participante.nome = form.cleaned_data['nome']
+			participante.num_inscricao = form.cleaned_data['num_inscricao']
+			participante.cpf = form.cleaned_data['cpf']
+			participante.save()
+			return redirect("participante/list")
+	else:
+		form = ParticipanteForm()
+
 	form = ParticipanteForm()
 
 	return render(request, 'certificado/participante_create.html', {'form': form})
 
+@login_required
+def perticipante_delete(request,participante_id):
+	participante = Participante.objects.get(pk=participante_id)
+	participante.delete()
 
+	return redirect("participante/list")

@@ -19,6 +19,7 @@
 			<table class="table table-hover">
 			  	<thead>
 			  		<tr>
+			  			<th>Id</th>
 			  			<th>Inscrição</th>
 			  			<th>Nome</th>
 			  			<th>CPF</th>
@@ -29,12 +30,12 @@
 			  	<tbody>	
 			  		{% for l in list %}
 			  		<tr>
+			  			<td>{{l.id}}</td>
 			  			<td>{{l.num_inscricao}}</td>
 			  			<td>{{l.nome}}</td>
 			  			<td>{{l.cpf}}</td>
-			  			<td>{{l.cpf}}</td>
 			  			<td><span class="glyphicon glyphicon-pencil"></span></td>
-			  			<td><span class="glyphicon glyphicon-trash"></span></td>
+			  			<td><a href="{% url "certificado.perticipante_delete participante.pk" %}"><span class="glyphicon glyphicon-trash"></span></a></td>
 			  		</tr>
 			  		{% endfor %}
 			  	</tbody>

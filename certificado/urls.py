@@ -8,5 +8,6 @@ urlpatterns = [
     url(r'resultado$', views.resultado, name='certificado.resultado'),
     url(r'participante/create$', views.participante_create, name='certificado.participante_create'),
     url(r'participante/list$', views.participante_list, name='certificado.participante_list'),
+    url(r'participante/delete/(?P<participante_id>\d+)', views.participante_delete, name='certificado.participante_delete'),
     
 ]

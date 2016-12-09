@@ -22,12 +22,12 @@
 							<li role="presentation"><a href="#">Certificado</a></li>
 							<p>
 							Usuário: {{request.user}}
-							<a href="{% url "account.logout" %}"><br><small>Sair</small></a>
+							<a href="{% url "accounts.logout" %}"><br><small>Sair</small></a>
 							</p>
 						</ul>
 	
 					{% else %}
-					<p><a href="{% url "account.auth" %}"><br><small>Entrar</small></a></p>
+					<p><a href="{% url "accounts.auth" %}"><br><small>Entrar</small></a></p>
 					{% endif %}
 				</div>
 			</div>

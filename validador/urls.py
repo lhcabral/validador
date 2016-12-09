@@ -21,6 +21,6 @@ from certificado import views
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^certificado/', include('certificado.urls')),
-        url(r'^account/login', views.auth, name="account.auth"),
-    	url(r'^account/logout', views.logout_view, name="account.logout"),
+        url(r'^accounts/login', views.auth, name="accounts.auth"),
+    	url(r'^accounts/logout', views.logout_view, name="accounts.logout"),
 ]

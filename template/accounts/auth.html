@@ -16,15 +16,10 @@
 				<div class="row">
 					<div class="col-md-12 col-sm-12">
 
-						{% if request.user.is_authenticated %}
 
-							<p>
-								Entre com usuário e senha para fazer login
-							</p>
-						{% else %}
 							<div class="col-md-6 col-md-offset-3">
 								
-								<form action="{% url "account.auth" %}" method="POST" class="form-group">
+								<form action="{% url "accounts.auth" %}" method="POST" class="form-group">
 									{% csrf_token %}
 									{% if error == True %}
 										<p class="alert alert-danger">Sair</p>
@@ -40,7 +35,7 @@
 									<input type="submit" class="btn btn-success" value=Entrar>	
 								</form>
 							</div>
-						{% endif %}
+	
 
 					</div>
 				</div>
