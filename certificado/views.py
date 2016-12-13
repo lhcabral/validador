@@ -98,8 +98,14 @@ def participante_create(request):
 	return render(request, 'certificado/participante_create.html', {'form': form})
 
 @login_required
-def perticipante_delete(request,participante_id):
+def participante_delete(request,participante_id):
+	list = Participante.objects.all()
 	participante = Participante.objects.get(pk=participante_id)
 	participante.delete()
+	
+	context = {
+		'list': list,
+	}
 
-	return redirect("participante/list")
+	return render(request, 'certificado/participante_list.html', context)
+	# return redirect("participante/list")

@@ -35,7 +35,7 @@
 			  			<td>{{l.nome}}</td>
 			  			<td>{{l.cpf}}</td>
 			  			<td><span class="glyphicon glyphicon-pencil"></span></td>
-			  			<td><a href="{% url "certificado.perticipante_delete participante.pk" %}"><span class="glyphicon glyphicon-trash"></span></a></td>
+			  			<td><a href="{% url 'certificado.participante_delete' l.pk %}"><span class="glyphicon glyphicon-trash"></span></a></td>
 			  		</tr>
 			  		{% endfor %}
 			  	</tbody>
